@@ -3,7 +3,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: sampleapp
-  namespace: default
+  namespace: test
   labels:
     app: sampleapp
 spec:
@@ -18,20 +18,20 @@ spec:
     spec:
       containers:
       - name: sampleapp
-        image: "navyaa14/samplewebapp"
+        image: "nginx"
         ports:
-          - containerPort: 3000
+          - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: sampleapp
-  namespace: default
+  namespace: test
 spec:
   selector:
     app: sampleapp
   type: NodePort
   ports:
   - name: http
-    targetPort: 3000
+    targetPort: 80
     port: 80
